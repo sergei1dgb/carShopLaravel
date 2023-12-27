@@ -58,7 +58,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {   
-        if(Auth::user()->email == 'admin@mail.ru'){
+        if(Auth::user()->email === 'admin@mail.ru'){
         $review = new ProductModel();
 
         $review->brand_name = $request->input('brand_name');
@@ -80,7 +80,7 @@ class ProductController extends Controller
 
     public function store_view()
     {
-        if(Auth::user()->email == 'admin@mail.ru'){
+        if(Auth::user()->email === 'admin@mail.ru'){
         return view('Admin/addProduct');
         }
         else 
@@ -106,6 +106,11 @@ class ProductController extends Controller
           }
 
         $review = new ReviewModel();
+        if(Auth::user()->email !== $request->input('email')){
+            return redirect('/reviews')
+              ->withInput()
+              ->withErrors("Введенный адрес email не соответствует Вашему адресу");
+        }
 
         $review->name = $request->input('name');
         $review->email = $request->input('email');
