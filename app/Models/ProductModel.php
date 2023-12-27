@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+
 
 class ProductModel extends Model
 {
     protected $table = 'products';
-    use Searchable;
+   
 
     public function car_model(){
         return $this->belongsTo(Car_Model_Model::Class, 'car_model_id', 'id');

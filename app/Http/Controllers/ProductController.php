@@ -21,7 +21,7 @@ class ProductController extends Controller
        
        //return view('mainPage', ['products', $this->get_all_products()]);
        $reviews = new ProductModel();
-       $products = $reviews->paginate(5);
+       $products = $reviews->paginate(8);
         return view('mainPage', ['products' => $products]);
     }
 
